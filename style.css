@@ -1,0 +1,77 @@
+*{box-sizing:border-box}
+:root{--bg:#0d0d0e;--fg:#f7f2ed;--muted:#aaa29b;--line:rgba(255,255,255,.15);--accent:#d8b59e}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+body{overflow-x:hidden}
+body.lock{overflow:hidden}
+a{color:inherit}
+#loading{position:fixed;inset:0;background:#0d0d0e;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;font-size:12px;color:#aaa;letter-spacing:2px;transition:opacity .8s}
+.loader-heart{font-size:34px;color:#d8b59e;animation:pulse 1.2s infinite}
+.music-btn{position:fixed;right:18px;top:calc(18px + env(safe-area-inset-top));width:42px;height:42px;border:1px solid rgba(255,255,255,.28);border-radius:50%;z-index:1000;background:rgba(0,0,0,.3);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;font-size:19px}
+.music-btn.on span{animation:spin 3s linear infinite;display:block}
+.scene{min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero{min-height:100svh}
+.hero-bg{position:absolute;inset:-5%;background:url("assets/images/hero.jpg") center/cover;transform:scale(1.05);animation:heroZoom 12s ease-out forwards}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.2) 45%,rgba(0,0,0,.82))}
+.grain{position:absolute;inset:0;z-index:2;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.hero-content,.scroll-hint{position:relative;z-index:3;text-align:center}
+.hero-content{transform:translateY(10px);opacity:0;animation:rise 1.4s .3s forwards}
+.eyebrow{font-size:10px;letter-spacing:4px;color:var(--muted);margin:0 0 18px}
+.hero .eyebrow{color:rgba(255,255,255,.72)}
+h1,h2{font-family:"STKaiti","KaiTi","Songti SC",serif;font-weight:400;margin:0}
+h1{font-size:clamp(52px,15vw,90px);letter-spacing:7px}
+h2{font-size:clamp(37px,10vw,58px);line-height:1.2}
+.hero-names{margin-top:22px;font-family:serif;font-size:19px;letter-spacing:3px}
+.hero-names i{font-style:normal;color:var(--accent);margin:0 9px}
+.hero-date{font-size:11px;letter-spacing:4px;margin-top:24px}
+.scroll-hint{position:absolute;bottom:32px;font-size:10px;letter-spacing:3px;color:#aaa}
+.scroll-hint span{display:block;width:1px;height:42px;background:#aaa;margin:0 auto 9px;animation:scroll 1.8s infinite}
+.section-inner{width:min(900px,88vw);text-align:center}
+.story,.timeline,.details{background:#f2ece7;color:#241e1c}
+.story .eyebrow,.timeline .eyebrow,.details .eyebrow,.gallery .eyebrow{color:#9b8174}
+.story-card{width:min(430px,82vw);margin:42px auto 0;position:relative}
+.story-card img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.story-caption{position:absolute;bottom:0;left:0;right:0;padding:26px 20px 20px;text-align:left;background:linear-gradient(transparent,rgba(0,0,0,.7));color:white}
+.story-caption b{font:34px Georgia;display:block}
+.story-caption span{font-size:12px;letter-spacing:3px}
+.gallery{background:#111}
+.gallery-grid{margin-top:38px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gallery-grid figure{margin:0;overflow:hidden}
+.gallery-grid img{width:100%;height:100%;display:block;object-fit:cover;transition:transform 1.2s}
+.g1{grid-row:span 2;height:55vw;max-height:520px}.g2,.g3,.g4{height:27vw;max-height:255px}
+.gallery-grid figure.reveal img{transform:scale(1.03)}
+.timeline{min-height:90svh}
+.timeline-list{max-width:550px;margin:40px auto 0;text-align:left;border-left:1px solid #cdbfb5;padding-left:28px}
+.timeline-list div{position:relative;padding:0 0 34px}
+.timeline-list div:before{content:"";position:absolute;left:-34px;top:4px;width:9px;height:9px;border-radius:50%;background:#cdbfb5}
+.timeline-list b{font:24px Georgia;color:#9b8174;display:inline-block;width:75px}
+.timeline-list span{font-size:14px}
+.timeline-list .active:before{background:#7f6255;box-shadow:0 0 0 6px rgba(127,98,85,.13)}
+.countdown{background:#111}
+.count{display:flex;justify-content:center;gap:9px;margin:45px auto 20px}
+.count div{width:76px;padding:15px 5px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.count strong{font:34px Georgia;display:block}
+.count small{font-size:8px;color:#777;letter-spacing:2px}
+.count-note{font-size:11px;color:#888;letter-spacing:2px}
+.details{text-align:center}
+.detail-list{max-width:520px;margin:35px auto}
+.detail-list div{padding:20px 0;border-bottom:1px solid rgba(50,35,30,.13)}
+.detail-list small{display:block;color:#9b8174;font-size:9px;letter-spacing:3px;margin-bottom:7px}
+.detail-list b{font-size:15px;font-weight:400}
+.pill{display:inline-block;text-decoration:none;border:1px solid currentColor;border-radius:99px;padding:13px 28px;font-size:12px;letter-spacing:1px;margin-top:12px}
+.message{background:url("assets/images/photo6.jpg") center/cover fixed}
+.message:before{content:"";position:absolute;inset:0;background:rgba(20,12,10,.68)}
+.message .section-inner{position:relative}
+.quote{font-family:"STKaiti","KaiTi",serif;font-size:19px;line-height:2.05;margin:35px auto;max-width:650px}
+.signature{font:26px "STKaiti","KaiTi",serif;color:var(--accent)}
+.rsvp{background:#171313;min-height:75svh}
+.rsvp p{color:#999;font-size:13px;line-height:2}
+.tiny{font-size:9px!important;color:#555!important;margin-top:25px}
+footer{padding:65px 20px calc(65px + env(safe-area-inset-bottom));background:#0a0909;text-align:center;color:#777;letter-spacing:3px;font-size:9px}
+footer strong{display:block;color:#d8b59e;font-size:25px;margin:20px}
+footer small{font-size:8px}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes heroZoom{to{transform:scale(1)}}
+@keyframes scroll{50%{opacity:.25;transform:translateY(10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.15);opacity:.55}}
+@media(min-width:700px){.scene{min-height:760px}.gallery-grid{grid-template-columns:1fr 1fr 1fr}.g1{height:500px}.g2,.g3,.g4{height:245px}.g4{grid-column:3;grid-row:1 / span 2;height:500px}.g3{grid-column:2}.count div{width:100px}}
